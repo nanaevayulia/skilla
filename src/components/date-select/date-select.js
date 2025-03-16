@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useActions } from '../../redux/actions';
@@ -10,12 +10,20 @@ import { Arrow, IconCalendar } from '../../assets/icons';
 
 import style from './date-select.module.scss';
 
-export default function DateSelect() {
+export default function DateSelect({ setLoading, setError }) {
   const [isOpen, setIsOpen] = useState(false);
   const callFilterState = useSelector((state) => state.callFilter);
   const dateFilterState = useSelector((state) => state.dateFilter);
-  const [getCalls] = useGetCallsMutation();
+  const [getCalls, { isLoading, isError }] = useGetCallsMutation();
   const { setCalls, setDateFilter } = useActions();
+
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading]);
+
+  useEffect(() => {
+    setError(isError);
+  }, [isError]);
 
   const ref = useOutsideClick(() => {
     setIsOpen(false);

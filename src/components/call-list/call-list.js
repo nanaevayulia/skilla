@@ -1,17 +1,16 @@
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
 
 import { useGetCallsMutation } from '../../api/calls.api';
 import { useActions } from '../../redux/actions';
 import Header from '../header';
 import Call from '../call';
+import { Spinner, Error } from '../UI';
 import { today } from '../../utils/constants';
 
 import style from './call-list.module.scss';
 
-export default function CallList({ isLoading }) {
+export default function CallList({ isLoading, isError }) {
   const [sortedByTime, setSortedByTime] = useState('ASC');
   const [sortedByDuration, setSortedByDuration] = useState('ASC');
   const [todaysCalls, setTodaysCalls] = useState([]);
@@ -22,7 +21,7 @@ export default function CallList({ isLoading }) {
   const callsState = useSelector((state) => state.callsList.list);
 
   const { setCalls } = useActions();
-  const [getCalls] = useGetCallsMutation();
+  const [getCalls, { isLoading: loadingFilters, isError: errorFilters }] = useGetCallsMutation();
 
   useEffect(() => {
     filterByDate(callsState);
@@ -114,8 +113,9 @@ export default function CallList({ isLoading }) {
         timeDirection={sortedByTime}
         durationDirection={sortedByDuration}
       />
-      {isLoading && <Spin indicator={<LoadingOutlined spin />} size="large" />}
-      {!isLoading && callsState && callsState.length !== 0 && (
+      {(isLoading || loadingFilters) && <Spinner />}
+      {(isError || errorFilters) && <Error />}
+      {!isLoading && !loadingFilters && !isError && !errorFilters && callsState && callsState.length !== 0 && (
         <ul className={style['call-list__days']}>
           {arrayCallsList.map(({ callsList, day }) => createCallsList(callsList, day))}
         </ul>

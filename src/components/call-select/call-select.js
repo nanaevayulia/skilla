@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useActions } from '../../redux/actions';
@@ -8,11 +8,20 @@ import { Arrow, Cross } from '../../assets/icons';
 
 import style from './call-select.module.scss';
 
-export default function CallSelect() {
+export default function CallSelect({ setLoading, setError }) {
   const [isOpen, setIsOpen] = useState(false);
   const callFilterState = useSelector((state) => state.callFilter);
+  const dateFilterState = useSelector((state) => state.dateFilter);
   const { setCallFilter, setCalls } = useActions();
-  const [getCalls] = useGetCallsMutation();
+  const [getCalls, { isLoading, isError }] = useGetCallsMutation();
+
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading]);
+
+  useEffect(() => {
+    setError(isError);
+  }, [isError]);
 
   const ref = useOutsideClick(() => {
     setIsOpen(false);
@@ -29,7 +38,11 @@ export default function CallSelect() {
     setCallFilter({ id, text });
 
     try {
-      const response = await getCalls({ in_out: id }).unwrap();
+      const response = await getCalls({
+        date_start: dateFilterState.date_start,
+        date_end: dateFilterState.date_end,
+        in_out: id,
+      }).unwrap();
       setCalls(response?.results);
     } catch (err) {
       console.log(err.message);

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 import { useActions } from '../../redux/actions';
 import { useGetCallsMutation } from '../../api/calls.api';
@@ -10,11 +10,21 @@ import style from './main.module.scss';
 
 export default function Main() {
   const { setCalls } = useActions();
-  const [getCalls, { data, isLoading }] = useGetCallsMutation();
+  const [getCalls, { data, isLoading, isError }] = useGetCallsMutation();
+  const [loading, setLoading] = useState(isLoading);
+  const [error, setError] = useState(isError);
 
   useLayoutEffect(() => {
     getCalls({});
   }, []);
+
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading]);
+
+  useEffect(() => {
+    setError(isError);
+  }, [isError]);
 
   useEffect(() => {
     setCalls(data?.results);
@@ -23,10 +33,10 @@ export default function Main() {
   return (
     <div className={style.main}>
       <div className={style.selections}>
-        <CallSelect />
-        <DateSelect />
+        <CallSelect setLoading={setLoading} setError={setError} />
+        <DateSelect setLoading={setLoading} setError={setError} />
       </div>
-      <CallList isLoading={isLoading} />
+      <CallList isLoading={loading} isError={error} />
     </div>
   );
 }
