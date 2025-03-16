@@ -1,0 +1,19 @@
+@import '../../utils/variables.scss';
+@import '../../utils/mixin.scss';
+
+.header {
+    @include table-row;
+    color: $text-color-gray;
+    font-size: 14px;
+    line-height: 148%;
+    padding-left: 40px;
+
+    &-time, &-duration {
+        @include flex-icon;
+        @include hover-svg;
+    }
+
+    &-duration {
+        margin-left: auto;     
+    }
+}

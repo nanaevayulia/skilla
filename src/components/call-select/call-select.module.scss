@@ -1,0 +1,51 @@
+@import '../../utils/variables.scss';
+@import '../../utils/mixin.scss';
+
+.call-select {
+    color: $text-color-gray;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+    position: relative;
+}
+
+.set-filter {
+    &_active {
+        color: $color-blue;
+    }
+}
+
+.reset-filter, .set-filter {
+    @include flex-icon;
+    @include hover-svg;
+}
+
+.select-list {
+    background-color: $white-color;
+    border-radius: 8px;
+    padding: 4px 0;
+    width: 133px;
+    font-size: 12px;
+    line-height: 150%;
+    color: $text-color-black;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    margin-top: 2px;
+    box-shadow: 0 4px 20px $shadow;
+
+    &__item {
+        padding: 7px 12px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $hover;
+        }
+
+        &_active {
+            color: $color-blue;
+        }
+    }
+}

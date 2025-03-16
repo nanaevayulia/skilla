@@ -1,0 +1,57 @@
+@import './utils/variables.scss';
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-Regular.otf');
+  src: local('SF Pro Display Regular'), local('SF-Pro-Display-Regular'),
+    url('./assets/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: $main-color;
+  font-family: 'SF Pro Display', 'Open Sans', sans-serif;
+  font-size: 15px;
+  line-height: 140%;
+  color: $text-color-black;
+}
+
+button, input {
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit
+}
+
+svg {
+  fill: $color-gray;
+}

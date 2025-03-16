@@ -1,0 +1,80 @@
+@import '../../utils/variables.scss';
+@import '../../utils/mixin.scss';
+
+.call {
+    @include table-row;
+    padding-left: 40px;
+    
+    &:hover {
+        background-color: rgba(212, 223, 243, 0.17);
+        cursor: pointer;
+    }
+    
+    &-type {
+        margin-right: 2px;
+    }
+
+    &-time {
+        margin-right: 18px;
+    }
+
+    &-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50px;
+    }
+
+    &-tel {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-source {
+        color: $text-color-gray;
+    }
+
+    &-company {
+        color: $text-color-gray;
+    }
+
+    &-grade {
+        display: inline-block;
+        font-size: 14px;
+        line-height: 100%;
+        padding: 6px 8px;
+        border-radius: 4px;
+
+        &-green {
+            color: $color-green;
+            border: 1px solid $color-green;
+            background-color: $color-light-green;
+        }
+
+        &-red {
+            color: $color-red;
+            border: 1px solid $color-red;
+            background-color: $color-light-red;
+        }
+
+        &-gray {
+            border: 1px solid $color-gray;
+            background-color: $color-light-gray;
+        }
+
+        &-script {
+            color: $color-red;
+            padding: 0px;
+        }
+    }
+
+    &-duration {
+        margin-left: auto;     
+    }
+
+    &-record {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 30px;
+    }
+}

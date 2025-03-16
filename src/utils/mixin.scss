@@ -1,0 +1,21 @@
+@mixin table-row {
+    display: grid;
+    grid-template-columns: 3.4% 5.7% 8.8% 23.6% 15.2% 1fr 26.3%;
+    gap: 10px;
+    align-items: center;
+    padding: 20px 40px 20px 0;
+}
+
+@mixin flex-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@mixin hover-svg {
+    &:hover {
+        & svg {
+            fill: $color-blue;
+        }
+    }
+}

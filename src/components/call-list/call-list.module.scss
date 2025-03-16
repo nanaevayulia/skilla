@@ -1,0 +1,37 @@
+@import '../../utils/variables.scss';
+@import '../../utils/mixin.scss';
+
+.call-list {
+    background-color: $white-color;
+    border-radius: 8px;
+    box-shadow: 0 4px 5px $shadow;
+    padding: 25px 0 52px;
+    display: flex;
+    flex-direction: column;
+
+    &__day {
+        display: flex;
+        flex-direction: column;
+
+    &::before {
+        content: '';
+        height: 1px;
+        margin-left: 40px;
+        background-color: #EAF0FA;
+        }
+    }
+
+    &__days {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+}
+
+.day-list {
+    margin: 15px 0 15px 40px;
+}
+
+sup {
+    color: $text-color-gray;
+}

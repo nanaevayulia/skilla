@@ -1,0 +1,16 @@
+@import '../../utils/variables.scss';
+
+.main {
+    max-width: 1440px;
+    margin: auto;
+    padding: 80px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.selections {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

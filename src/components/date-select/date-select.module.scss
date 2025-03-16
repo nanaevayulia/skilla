@@ -1,0 +1,92 @@
+@import '../../utils/variables.scss';
+@import '../../utils/mixin.scss';
+
+.date-select {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    position: relative;
+
+    &__button {
+        padding: 7px;
+        @include hover-svg;
+    }
+
+    &__period {
+        @include flex-icon;
+        color: $color-blue;
+        padding: 0;
+    }
+
+    &__submit {
+        display: none;
+    }
+}
+
+.select-list {
+    background-color: $white-color;
+    color: $text-color-gray;
+    border-radius: 4px;
+    padding: 4px 0;
+    width: 224px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1;
+    margin-top: 2px;
+    box-shadow: 0 4px 20px $shadow;
+
+    &__item {
+        padding: 7px 20px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $hover;
+            color: $text-color-black;
+        }
+
+        &_active {
+            color: $color-blue;
+
+            &:hover {
+                color: $color-blue;
+            }
+        }
+    }
+
+    &__form {
+        padding: 7px 20px;
+        cursor: pointer;
+    }
+
+    &__label {
+        color: $text-color-black;
+    }
+
+    &__inputs {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto auto;
+        align-items: center;
+        gap: 4px;
+
+        &:last-child {
+            margin-left: auto;
+        }
+    }
+}
+
+input {
+    width: 100%;
+    outline: none;
+
+    &::-webkit-calendar-picker-indicator {
+        display: none;
+    }
+
+    &::placeholder {
+        color: $text-color-gray;
+        letter-spacing: 4px;
+        line-height: 200%;
+    }
+}
